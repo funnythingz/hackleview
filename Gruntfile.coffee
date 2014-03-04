@@ -14,12 +14,6 @@ module.exports = (grunt)->
       options:
         separator: ';'
 
-    copy:
-      lib: {
-        src: 'lib/jquery/jquery.min.js'
-        dest: 'public/jquery.min.js'
-      }
-
     ts:
       base:
         src: ['src/**/*.ts']
@@ -61,8 +55,7 @@ module.exports = (grunt)->
   grunt.loadNpmTasks('grunt-contrib-uglify')
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-contrib-connect')
-  grunt.loadNpmTasks('grunt-contrib-copy')
   grunt.loadNpmTasks('grunt-contrib-clean')
 
-  grunt.registerTask('default', ['ts', 'concat', 'copy', 'uglify', 'clean', 'compass'])
+  grunt.registerTask('default', ['ts', 'concat', 'uglify', 'clean', 'compass'])
   grunt.registerTask('server', ['connect'])
