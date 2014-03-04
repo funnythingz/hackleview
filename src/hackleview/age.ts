@@ -1,4 +1,4 @@
-module TYPESC {
+module HACKLEVIEW {
 
   export class Age {
     public count: number;

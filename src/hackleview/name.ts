@@ -1,4 +1,4 @@
-module TYPESC {
+module HACKLEVIEW {
 
   export class Name<T> {
     public first: T;

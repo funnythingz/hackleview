@@ -1,25 +1,25 @@
-var TYPESC;
-(function (TYPESC) {
+var HACKLEVIEW;
+(function (HACKLEVIEW) {
     var Age = (function () {
         function Age(count) {
             this.count = count;
         }
         return Age;
     })();
-    TYPESC.Age = Age;
-})(TYPESC || (TYPESC = {}));
+    HACKLEVIEW.Age = Age;
+})(HACKLEVIEW || (HACKLEVIEW = {}));
 ;var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-var TYPESC;
-(function (TYPESC) {
+var HACKLEVIEW;
+(function (HACKLEVIEW) {
     var Human = (function () {
         function Human(first, last, age) {
-            this.name = new TYPESC.Name(first, last);
-            this.age = new TYPESC.Age(age);
+            this.name = new HACKLEVIEW.Name(first, last);
+            this.age = new HACKLEVIEW.Age(age);
         }
         Human.prototype.sayName = function () {
             return this.name;
@@ -30,7 +30,7 @@ var TYPESC;
         };
         return Human;
     })();
-    TYPESC.Human = Human;
+    HACKLEVIEW.Human = Human;
 
     var M = (function (_super) {
         __extends(M, _super);
@@ -39,7 +39,7 @@ var TYPESC;
         }
         return M;
     })(Human);
-    TYPESC.M = M;
+    HACKLEVIEW.M = M;
     var F = (function (_super) {
         __extends(F, _super);
         function F() {
@@ -47,10 +47,10 @@ var TYPESC;
         }
         return F;
     })(Human);
-    TYPESC.F = F;
-})(TYPESC || (TYPESC = {}));
-;var TYPESC;
-(function (TYPESC) {
+    HACKLEVIEW.F = F;
+})(HACKLEVIEW || (HACKLEVIEW = {}));
+;var HACKLEVIEW;
+(function (HACKLEVIEW) {
     var Name = (function () {
         function Name(first, last) {
             this.first = first;
@@ -58,5 +58,5 @@ var TYPESC;
         }
         return Name;
     })();
-    TYPESC.Name = Name;
-})(TYPESC || (TYPESC = {}));
+    HACKLEVIEW.Name = Name;
+})(HACKLEVIEW || (HACKLEVIEW = {}));

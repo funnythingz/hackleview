@@ -1,7 +1,7 @@
 /// <reference path="name.ts" />
 /// <reference path="age.ts" />
 
-module TYPESC {
+module HACKLEVIEW {
 
   export class Human {
     private name: Name<string>;

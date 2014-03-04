@@ -3,13 +3,13 @@ module.exports = (grunt)->
     pkg: grunt.file.readJSON('package.json')
 
     uglify:
-      typesc:
-        files: 'public/typesc.min.js': ['public/typesc.js']
+      dest:
+        files: 'public/hackleview.min.js': ['public/hackleview.js']
 
     concat:
-      typesc:
-        src: ['src/typesc/*.js']
-        dest: 'public/typesc.js'
+      dest:
+        src: ['src/hackleview/*.js']
+        dest: 'public/hackleview.js'
 
       options:
         separator: ';'
