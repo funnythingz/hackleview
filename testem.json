@@ -1,4 +1,8 @@
 {
   "framework" : "mocha+chai",
-  "src_files" : ["build/hackleview-spec.js"]
+  "src_files" : [
+    "public/jquery.min.js",
+    "public/hackleview.js",
+    "build/**/*.js"
+  ]
 }
