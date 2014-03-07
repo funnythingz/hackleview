@@ -42,7 +42,7 @@ module.exports = (grunt)->
         options:
           atBegin: true
 
-    clean: ['src/**/*.js', 'tests/**/*.js', 'tscommand.tmp.txt']
+    clean: ['src/**/*.js', 'tests/**/*.js']
 
     connect:
       server:

@@ -28,7 +28,6 @@ var HACKLE;
         var hoge = $(".hoge");
 
         it("should be `div.$el` to instanceof `jQuery`", function () {
-            console.log(div.$el);
             expect(div.$el).to.instanceof(jQuery);
         });
     });
