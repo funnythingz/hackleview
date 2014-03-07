@@ -1,9 +1,20 @@
 var HACKLE;
 (function (HACKLE) {
     var View = (function () {
-        function View(id) {
-            this.id = id;
+        function View(viewCreateOptions) {
+            if (typeof viewCreateOptions === "undefined") { viewCreateOptions = {}; }
+            this.tagName = 'div';
+            this.attributes = {};
+            this.$el = $('<' + this.tagName + '>');
+            this.tagName = viewCreateOptions.tagName || 'div';
+            this.id = viewCreateOptions.id || '';
+            this.className = viewCreateOptions.className || '';
+            this.attributes = viewCreateOptions.attributes || {};
+            this.$el = this.isJQuery(viewCreateOptions.$el) ? viewCreateOptions.$el : $('<' + this.tagName + '>');
         }
+        View.prototype.isJQuery = function ($that) {
+            return $that instanceof jQuery;
+        };
         return View;
     })();
     HACKLE.View = View;
@@ -13,10 +24,12 @@ var HACKLE;
     var expect = chai.expect;
 
     describe("View", function () {
-        var view = new HACKLE.View('123');
+        var div = new HACKLE.View();
+        var hoge = $(".hoge");
 
-        it("should be view has id is `123`", function () {
-            expect(view.id).to.equals('123');
+        it("should be `div.$el` to instanceof `jQuery`", function () {
+            console.log(div.$el);
+            expect(div.$el).to.instanceof(jQuery);
         });
     });
 })(HACKLE || (HACKLE = {}));
