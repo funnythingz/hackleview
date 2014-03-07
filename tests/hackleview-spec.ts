@@ -9,10 +9,11 @@ module HACKLE {
 
     describe("View", function() {
 
-        var view = new View('123');
+        var div: View = new View();
+        var hoge = $(".hoge");
 
-        it("should be view has id is `123`", function() {
-            expect(view.id).to.equals('123');
+        it("should be `div.$el` to instanceof `jQuery`", function() {
+            expect(div.$el).to.instanceof(jQuery);
         });
 
     });
