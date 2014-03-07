@@ -11,6 +11,10 @@ var HACKLE;
             this.attributes = viewCreateOptions.attributes || {};
             this.$el = this.isJQuery(viewCreateOptions.$el) ? viewCreateOptions.$el : $('<' + this.tagName + '>');
         }
+        View.prototype.render = function () {
+            return this;
+        };
+
         View.prototype.isJQuery = function ($that) {
             return $that instanceof jQuery;
         };

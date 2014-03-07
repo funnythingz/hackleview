@@ -26,6 +26,10 @@ module HACKLE {
             this.$el = this.isJQuery(viewCreateOptions.$el) ? viewCreateOptions.$el : $('<' + this.tagName + '>');
         }
 
+        render(): View {
+            return this;
+        }
+
         private isJQuery($that): boolean {
             return $that instanceof jQuery;
         }
