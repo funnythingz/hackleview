@@ -31,7 +31,7 @@ module.exports = (grunt)->
 
     watch:
       ts:
-        files: ['src/**/*.ts']
+        files: ['src/**/*.ts', 'tests/**/*.ts']
         tasks: ['ts', 'concat', 'uglify', 'clean']
         options:
           atBegin: true
