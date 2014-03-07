@@ -11,12 +11,16 @@ module.exports = (grunt)->
         src: ['src/hackleview/*.js']
         dest: 'public/hackleview.js'
 
+      test:
+        src: ['src/hackleview/*.js', 'tests/hackleview/*.js']
+        dest: 'build/hackleview-spec.js'
+
       options:
         separator: ';'
 
     ts:
       base:
-        src: ['src/**/*.ts']
+        src: ['src/**/*.ts', 'tests/**/*.ts']
         options:
           sourceMap: false
 
@@ -38,7 +42,7 @@ module.exports = (grunt)->
         options:
           atBegin: true
 
-    clean: ['src/**/*.js', 'tscommand.tmp.txt']
+    clean: ['src/**/*.js', 'tests/**/*.js', 'tscommand.tmp.txt']
 
     connect:
       server:
