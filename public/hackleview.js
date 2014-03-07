@@ -5,7 +5,6 @@ var HACKLE;
             if (typeof viewCreateOptions === "undefined") { viewCreateOptions = {}; }
             this.tagName = 'div';
             this.attributes = {};
-            this.$el = $('<' + this.tagName + '>');
             this.tagName = viewCreateOptions.tagName || 'div';
             this.id = viewCreateOptions.id || '';
             this.className = viewCreateOptions.className || '';

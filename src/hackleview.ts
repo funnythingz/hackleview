@@ -16,7 +16,7 @@ module HACKLE {
         id: string;
         className: string;
         attributes: Object = {};
-        $el: JQuery = $('<' + this.tagName + '>');
+        $el: JQuery;
 
         constructor(viewCreateOptions: IViewCreateOptions = {}) {
             this.tagName = viewCreateOptions.tagName || 'div';

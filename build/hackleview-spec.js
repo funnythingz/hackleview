@@ -5,7 +5,6 @@ var HACKLE;
             if (typeof viewCreateOptions === "undefined") { viewCreateOptions = {}; }
             this.tagName = 'div';
             this.attributes = {};
-            this.$el = $('<' + this.tagName + '>');
             this.tagName = viewCreateOptions.tagName || 'div';
             this.id = viewCreateOptions.id || '';
             this.className = viewCreateOptions.className || '';
@@ -23,12 +22,29 @@ var HACKLE;
 (function (HACKLE) {
     var expect = chai.expect;
 
-    describe("View", function () {
-        var div = new HACKLE.View();
-        var hoge = $(".hoge");
+    describe("HACKLE.View", function () {
+        describe("on the default instance", function () {
+            var div = new HACKLE.View();
 
-        it("should be `div.$el` to instanceof `jQuery`", function () {
-            expect(div.$el).to.instanceof(jQuery);
+            it("`div.$el` to instanceof `jQuery`", function () {
+                expect(div.$el).to.instanceof(jQuery);
+            });
+
+            it("`div.$el[0]` has `DIV` of `tagName`", function () {
+                expect(div.$el[0].tagName).to.equal('DIV');
+            });
+
+            it("`div.$el[0]` has not `id`", function () {
+                expect(div.$el[0].id).to.equal('');
+            });
+
+            it("`div.$el[0]` has not any classList", function () {
+                expect(div.$el[0].classList).to.have.length(0);
+            });
+
+            it("`div.$el[0]` has not any attributes", function () {
+                expect(div.$el[0].attributes).to.have.length(0);
+            });
         });
     });
 })(HACKLE || (HACKLE = {}));
