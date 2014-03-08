@@ -20,7 +20,7 @@ module.exports = (grunt)->
 
     typescript:
       base:
-        src: ['src/**/*.ts', 'tests/**/*.ts']
+        src: ['src/**/*.ts', 'tests/**/*.ts', 'public/**/*.ts']
         options:
           sourceMap: false
 
@@ -31,8 +31,8 @@ module.exports = (grunt)->
 
     watch:
       typescript:
-        files: ['src/**/*.ts', 'tests/**/*.ts']
-        tasks: ['ts', 'concat', 'uglify', 'clean']
+        files: ['src/**/*.ts', 'tests/**/*.ts', 'public/**/*.ts']
+        tasks: ['typescript', 'concat', 'uglify', 'clean']
         options:
           atBegin: true
 
