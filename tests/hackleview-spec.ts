@@ -17,19 +17,19 @@ module HACKLE {
                 expect(div.$el).to.instanceof(jQuery);
             });
 
-            it("div.$el[0] has `DIV` of tagName", function() {
+            it("div.$el has `DIV` of tagName", function() {
                 expect(div.$el.get(0).tagName).to.equal('DIV');
             });
 
-            it("div.$el[0] has not id", function() {
+            it("div.$el has not id", function() {
                 expect(div.$el.get(0).id).to.equal('');
             });
 
-            it("div.$el[0] has not any classList", function() {
+            it("div.$el has not any classList", function() {
                 expect(div.$el.get(0).classList).to.have.length(0);
             });
 
-            it("div.$el[0] has not any attributes", function() {
+            it("div.$el has not any attributes", function() {
                 expect(div.$el.get(0).attributes).to.have.length(0);
             });
 
@@ -48,7 +48,7 @@ module HACKLE {
             });
 
             it("p.$el has `poge` class of attribute", function() {
-                expect(p.$el.get(0).className).to.equal('poge');
+                expect(p.$el.hasClass('poge')).to.be.true;
             });
 
             it("p.$el has `pid` id of attribute", function() {
