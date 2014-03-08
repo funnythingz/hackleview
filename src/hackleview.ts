@@ -24,6 +24,8 @@ module HACKLE {
             this.className = viewCreateOptions.className || '';
             this.attributes = viewCreateOptions.attributes || {};
             this.$el = this.isJQuery(viewCreateOptions.$el) ? viewCreateOptions.$el : $('<' + this.tagName + '>');
+
+            this.reflectAttribute();
         }
 
         render(): View {
@@ -32,6 +34,26 @@ module HACKLE {
 
         private isJQuery($that): boolean {
             return $that instanceof jQuery;
+        }
+
+        private reflectAttribute() {
+
+            var attributes = {};
+
+            if(this.id !== '') {
+                attributes['id'] = this.id;
+            }
+
+            if(this.className !== '') {
+                attributes['class'] = this.className;
+            }
+
+            for(var key in this.attributes) {
+                attributes[key] = this.attributes[key];
+            }
+
+            this.$el.attr(attributes);
+
         }
 
     }

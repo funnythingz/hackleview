@@ -8,7 +8,16 @@ module DEMO {
         constructor() {
 
             var div: HACKLE.View = new HACKLE.View();
+
             $('#main').append(div.$el);
+
+            var p: HACKLE.View = new HACKLE.View({
+                                     className: 'class',
+                                     id: 'id',
+                                     tagName: 'p'
+                                 });
+
+            $('#main').append(p.$el);
 
             console.log($('#main').html());
         }
