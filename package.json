@@ -1,7 +1,7 @@
 {
   "name": "HACKLE.View",
   "version": "0.0.0",
-  "description": "TypeScript View",
+  "description": "Simple View for TypeScript",
   "author": "funnythingz",
   "license": "BSD",
   "devDependencies": {
