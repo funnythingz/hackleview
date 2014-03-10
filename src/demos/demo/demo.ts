@@ -1,12 +1,12 @@
 /// <reference path="../../../definitions/jquery.d.ts" />
 /// <reference path="../../applications/hackleview/hackleview.ts" />
 
-module CUSTOM {
+module DEMO {
 
     export class HeaderView extends HACKLE.View {
 
         tagName: string = 'header';
-        className: string = 'greeting';
+        className: string = 'header';
 
         constructor(viewCreateOptions: HACKLE.IViewCreateOptions = {}) {
             super(viewCreateOptions);
@@ -45,9 +45,42 @@ module CUSTOM {
 
     }
 
+    export class GreetingView extends HACKLE.View {
+
+        tagName: string = 'article';
+        className: string = 'greeting';
+
+        constructor(viewCreateOptions: HACKLE.IViewCreateOptions = {}) {
+            super(viewCreateOptions);
+
+            var header: HeaderView = new HeaderView();
+            var footer: FooterView = new FooterView();
+
+            this.reflectTagName();
+            this.reflectAttribute();
+
+            this.$el.append(
+                header.$el,
+                this.renderAnimals(),
+                footer.$el
+            );
+        }
+
+        renderAnimals(): string {
+            var template = new HACKLE.HBSTemplate('hbs/animals.hbs');
+            return template.render({
+                animals: [
+                    {name: 'cat', anchor: '#cat'},
+                    {name: 'dog', anchor: '#dog'},
+                    {name: 'rion', anchor: '#rion'}
+                ]
+            });
+        }
+    }
+
 }
 
-module DEMO {
+module Controler {
 
     export class Default {
 
@@ -74,13 +107,9 @@ module DEMO {
 
         constructor() {
 
-            var header: HACKLE.View = new CUSTOM.HeaderView();
-            var footer: HACKLE.View = new CUSTOM.FooterView();
+            var greeting: DEMO.GreetingView = new DEMO.GreetingView();
 
-            $('#main').append(
-                header.$el,
-                footer.$el
-            );
+            $('#main').append(greeting.$el);
 
             console.log($('#main').html());
         }
@@ -89,6 +118,6 @@ module DEMO {
 
 }
 $(() => {
-//new DEMO.Default();
-    new DEMO.Greeting();
+    //new Controler.Default();
+    new Controler.Greeting();
 });

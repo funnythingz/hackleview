@@ -4,15 +4,15 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-var CUSTOM;
-(function (CUSTOM) {
+var DEMO;
+(function (DEMO) {
     var HeaderView = (function (_super) {
         __extends(HeaderView, _super);
         function HeaderView(viewCreateOptions) {
             if (typeof viewCreateOptions === "undefined") { viewCreateOptions = {}; }
             _super.call(this, viewCreateOptions);
             this.tagName = 'header';
-            this.className = 'greeting';
+            this.className = 'header';
             this.reflectTagName();
             this.reflectAttribute();
             this.$el.append(this.renderTemplate());
@@ -25,7 +25,7 @@ var CUSTOM;
         };
         return HeaderView;
     })(HACKLE.View);
-    CUSTOM.HeaderView = HeaderView;
+    DEMO.HeaderView = HeaderView;
 
     var FooterView = (function (_super) {
         __extends(FooterView, _super);
@@ -46,11 +46,41 @@ var CUSTOM;
         };
         return FooterView;
     })(HACKLE.View);
-    CUSTOM.FooterView = FooterView;
-})(CUSTOM || (CUSTOM = {}));
+    DEMO.FooterView = FooterView;
 
-var DEMO;
-(function (DEMO) {
+    var GreetingView = (function (_super) {
+        __extends(GreetingView, _super);
+        function GreetingView(viewCreateOptions) {
+            if (typeof viewCreateOptions === "undefined") { viewCreateOptions = {}; }
+            _super.call(this, viewCreateOptions);
+            this.tagName = 'article';
+            this.className = 'greeting';
+
+            var header = new HeaderView();
+            var footer = new FooterView();
+
+            this.reflectTagName();
+            this.reflectAttribute();
+
+            this.$el.append(header.$el, this.renderAnimals(), footer.$el);
+        }
+        GreetingView.prototype.renderAnimals = function () {
+            var template = new HACKLE.HBSTemplate('hbs/animals.hbs');
+            return template.render({
+                animals: [
+                    { name: 'cat', anchor: '#cat' },
+                    { name: 'dog', anchor: '#dog' },
+                    { name: 'rion', anchor: '#rion' }
+                ]
+            });
+        };
+        return GreetingView;
+    })(HACKLE.View);
+    DEMO.GreetingView = GreetingView;
+})(DEMO || (DEMO = {}));
+
+var Controler;
+(function (Controler) {
     var Default = (function () {
         function Default() {
             var div = new HACKLE.View();
@@ -69,21 +99,20 @@ var DEMO;
         }
         return Default;
     })();
-    DEMO.Default = Default;
+    Controler.Default = Default;
 
     var Greeting = (function () {
         function Greeting() {
-            var header = new CUSTOM.HeaderView();
-            var footer = new CUSTOM.FooterView();
+            var greeting = new DEMO.GreetingView();
 
-            $('#main').append(header.$el, footer.$el);
+            $('#main').append(greeting.$el);
 
             console.log($('#main').html());
         }
         return Greeting;
     })();
-    DEMO.Greeting = Greeting;
-})(DEMO || (DEMO = {}));
+    Controler.Greeting = Greeting;
+})(Controler || (Controler = {}));
 $(function () {
-    new DEMO.Greeting();
+    new Controler.Greeting();
 });
