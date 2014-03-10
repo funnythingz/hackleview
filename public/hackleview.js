@@ -12,7 +12,13 @@ var HACKLE;
             this.$el = this.isJQuery(viewCreateOptions.$el) ? viewCreateOptions.$el : $('<' + this.tagName + '>');
 
             this.reflectAttribute();
+            this.renderTemplate();
         }
+        View.prototype.renderTemplate = function () {
+            var template = new HBSTemplate('hbs/test.hbs');
+            this.$el.append(template.render({ greeting: 'Hello handlebars' }));
+        };
+
         View.prototype.render = function () {
             return this;
         };
@@ -41,4 +47,30 @@ var HACKLE;
         return View;
     })();
     HACKLE.View = View;
+
+    var HBSTemplate = (function () {
+        function HBSTemplate(hbsName) {
+            this.hbsName = hbsName;
+        }
+        HBSTemplate.prototype.render = function (data) {
+            if (typeof data === "undefined") { data = {}; }
+            var resultHTML;
+            var _hbsName = this.hbsName;
+
+            $.ajax({
+                url: _hbsName,
+                type: 'get',
+                dataType: 'html',
+                async: false,
+                success: function (hbs) {
+                    var template = Handlebars.compile(hbs);
+                    resultHTML = template(data);
+                }
+            });
+
+            return resultHTML;
+        };
+        return HBSTemplate;
+    })();
+    HACKLE.HBSTemplate = HBSTemplate;
 })(HACKLE || (HACKLE = {}));
