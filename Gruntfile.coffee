@@ -7,13 +7,17 @@ module.exports = (grunt)->
         files: 'public/hackleview.min.js': ['public/hackleview.js']
 
     concat:
-      dist:
-        src: ['src/**/*.js']
+      hackleview:
+        src: ['src/applications/hackleview/**/*.js']
         dest: 'public/hackleview.js'
 
+      demo:
+        src: ['src/demos/demo/**/*.js']
+        dest: 'public/demo.js'
+
       test:
-        src: ['src/**/*.js', 'tests/**/*.js']
-        dest: 'build/hackleview-spec.js'
+        src: ['src/applications/hackleview/**/*.js', 'tests/applications/hackleview/**/*.js']
+        dest: 'test-build/hackleview-spec.js'
 
       options:
         separator: ';'
@@ -27,7 +31,7 @@ module.exports = (grunt)->
 
     typescript:
       base:
-        src: ['src/**/*.ts', 'tests/**/*.ts', 'public/**/*.ts']
+        src: ['src/**/*.ts', 'tests/**/*.ts']
         options:
           sourceMap: false
 
@@ -38,7 +42,7 @@ module.exports = (grunt)->
 
     watch:
       typescript:
-        files: ['src/**/*.ts', 'tests/**/*.ts', 'public/**/*.ts', 'hbs/**/*.hbs']
+        files: ['src/**/*.ts', 'tests/**/*.ts', 'hbs/**/*.hbs']
         tasks: ['typescript', 'concat', 'uglify', 'clean', 'copy']
         options:
           atBegin: true
