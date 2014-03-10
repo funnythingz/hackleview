@@ -1,4 +1,5 @@
 /// <reference path="../definitions/jquery.d.ts" />
+/// <reference path="../definitions/handlebars.d.ts" />
 
 module HACKLE {
 
@@ -32,11 +33,11 @@ module HACKLE {
             return this;
         }
 
-        private isJQuery($that): boolean {
-            return $that instanceof jQuery;
+        reflectTagName() {
+            this.$el = $('<' + this.tagName + '>');
         }
 
-        private reflectAttribute() {
+        reflectAttribute() {
 
             var attributes = {};
 
@@ -56,6 +57,33 @@ module HACKLE {
 
         }
 
+        private isJQuery($that): boolean {
+            return $that instanceof jQuery;
+        }
+
     }
 
+    export class HBSTemplate {
+
+        constructor(private hbsName: string) {}
+
+        render(data: Object = {}): string {
+            var resultHTML: string;
+            var _hbsName = this.hbsName;
+
+            $.ajax({
+                url: _hbsName,
+                type: 'get',
+                dataType: 'html',
+                async: false,
+                success: (hbs) => {
+                    var template = Handlebars.compile(hbs);
+                    resultHTML = template(data);
+                }
+            });
+
+            return resultHTML;
+        }
+
+    }
 }
