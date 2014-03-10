@@ -20,7 +20,7 @@ require `jquery.js` and `handlebars.js`.
         <script src="jquery.min.js"></script>
         <script src="handlebars.min.js"></script>
         <script src="hackleview.min.js"></script>
-        <script src="demo.js"></script>
+        <script src="greeting.js"></script>
     </head>
     <body>
         <section id="main"><!-- {render} --></section>
@@ -50,76 +50,28 @@ require `jquery.js` and `handlebars.js`.
 
 ### handlebars template
 
-`hbs/header.hbs`
+`hbs/greeting.hbs`
 
 ```html
-<h1>{{greeting}}</h1>
-```
-
-`hbs/footer.hbs`
-
-```html
-<p class="copyright">&copy; {{copyright}}</p>
-```
-
-`hbs/animals.hbs`
-
-```html
+<header class="header">
+  <h1>{{greeting}}</h1>
+</header>
 <ul>
   {{#each animals}}
   <li><a href="{{anchor}}">{{name}}</a></li>
   {{/each}}
 </ul>
+<footer class="footer">
+  <p class="copyright">&copy; {{copyright}}</p>
+</footer>
 ```
 
 ### TypeScript
 
-compile to `demo.js`.
+compile to `greeting.js`.
 
 ```typescript
 module DEMO {
-
-    export class HeaderView extends HACKLE.View {
-
-        tagName: string = 'header';
-        className: string = 'globalHeader';
-
-        constructor(viewCreateOptions: HACKLE.IViewCreateOptions = {}) {
-            super(viewCreateOptions);
-            this.reflectTagName();
-            this.reflectAttribute();
-            this.$el.append(this.renderTemplate());
-        }
-
-        renderTemplate(): string {
-            var template = new HACKLE.HBSTemplate('hbs/header.hbs');
-            return template.render({
-                greeting: 'Hello HACKLE.View'
-            });
-        }
-
-    }
-
-    export class FooterView extends HACKLE.View {
-
-        tagName: string = 'footer';
-        className: string = 'globalFooter';
-
-        constructor(viewCreateOptions: HACKLE.IViewCreateOptions = {}) {
-            super(viewCreateOptions);
-            this.reflectTagName();
-            this.reflectAttribute();
-            this.$el.append(this.renderTemplate());
-        }
-
-        renderTemplate(): string {
-            var template = new HACKLE.HBSTemplate('hbs/footer.hbs');
-            return template.render({
-                copyright: "funnythingz"
-            });
-        }
-
-    }
 
     export class GreetingView extends HACKLE.View {
 
@@ -129,27 +81,24 @@ module DEMO {
         constructor(viewCreateOptions: HACKLE.IViewCreateOptions = {}) {
             super(viewCreateOptions);
 
-            var header: HeaderView = new HeaderView();
-            var footer: FooterView = new FooterView();
-
             this.reflectTagName();
             this.reflectAttribute();
 
             this.$el.append(
-                header.$el,
-                this.renderAnimals(),
-                footer.$el
+                this.renderTemplate()
             );
         }
 
-        renderAnimals(): string {
-            var template = new HACKLE.HBSTemplate('hbs/animals.hbs');
+        renderTemplate(): string {
+            var template = new HACKLE.HBSTemplate('hbs/greeting.hbs');
             return template.render({
+                greeting: 'Hello HACKLE.View',
                 animals: [
                     {name: 'cat', anchor: '#cat'},
                     {name: 'dog', anchor: '#dog'},
                     {name: 'rion', anchor: '#rion'}
-                ]
+                ],
+                copyright: "funnythingz"
             });
         }
     }
