@@ -3,11 +3,11 @@ module.exports = (grunt)->
     pkg: grunt.file.readJSON('package.json')
 
     uglify:
-      dest:
+      dist:
         files: 'public/hackleview.min.js': ['public/hackleview.js']
 
     concat:
-      dest:
+      dist:
         src: ['src/**/*.js']
         dest: 'public/hackleview.js'
 
@@ -17,6 +17,13 @@ module.exports = (grunt)->
 
       options:
         separator: ';'
+
+    copy:
+      dist:
+        files: [{
+          src: ['hbs/**/*.hbs']
+          dest: 'public/'
+        }]
 
     typescript:
       base:
@@ -31,8 +38,8 @@ module.exports = (grunt)->
 
     watch:
       typescript:
-        files: ['src/**/*.ts', 'tests/**/*.ts', 'public/**/*.ts']
-        tasks: ['typescript', 'concat', 'uglify', 'clean']
+        files: ['src/**/*.ts', 'tests/**/*.ts', 'public/**/*.ts', 'hbs/**/*.hbs']
+        tasks: ['typescript', 'concat', 'uglify', 'clean', 'copy']
         options:
           atBegin: true
 
@@ -42,7 +49,7 @@ module.exports = (grunt)->
         options:
           atBegin: true
 
-    clean: ['src/**/*.js', 'tests/**/*.js']
+    clean: ['src/**/*.js', 'tests/**/*.js', 'public/hbs/**/*.hbs']
 
     connect:
       server:
@@ -60,6 +67,7 @@ module.exports = (grunt)->
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadNpmTasks('grunt-contrib-connect')
   grunt.loadNpmTasks('grunt-contrib-clean')
+  grunt.loadNpmTasks('grunt-contrib-copy')
 
-  grunt.registerTask('default', ['typescript', 'concat', 'uglify', 'clean', 'compass'])
+  grunt.registerTask('default', ['typescript', 'concat', 'uglify', 'clean', 'copy', 'compass'])
   grunt.registerTask('server', ['connect'])
