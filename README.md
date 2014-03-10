@@ -30,7 +30,7 @@ require `jquery.js` and `handlebars.js`.
 
 > The Renderd HTML
 
-```HTML
+```html
 <section id="main">
     <article class="greeting">
         <header class="header">
@@ -105,17 +105,9 @@ module DEMO {
 
 }
 
-class Greeting {
-
-    constructor() {
-        var greeting: DEMO.GreetingView = new DEMO.GreetingView();
-        $('#main').append(greeting.$el);
-    }
-
-}
-
 $(() => {
-    new Greeting();
+    var greetingView: DEMO.GreetingView = new DEMO.GreetingView();
+    $('#main').append(greetingView.$el);
 });
 ```
 
