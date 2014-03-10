@@ -11,9 +11,9 @@ module.exports = (grunt)->
         src: ['src/applications/hackleview/**/*.js']
         dest: 'public/hackleview.js'
 
-      demo:
-        src: ['src/demos/demo/**/*.js']
-        dest: 'public/demo.js'
+      demo_greeting:
+        src: ['src/demos/greeting/**/*.js']
+        dest: 'public/greeting.js'
 
       test:
         src: ['src/applications/hackleview/**/*.js', 'tests/applications/hackleview/**/*.js']
