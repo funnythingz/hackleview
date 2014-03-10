@@ -12,7 +12,7 @@ var DEMO;
             if (typeof viewCreateOptions === "undefined") { viewCreateOptions = {}; }
             _super.call(this, viewCreateOptions);
             this.tagName = 'header';
-            this.className = 'header';
+            this.className = 'globalHeader';
             this.reflectTagName();
             this.reflectAttribute();
             this.$el.append(this.renderTemplate());
@@ -33,7 +33,7 @@ var DEMO;
             if (typeof viewCreateOptions === "undefined") { viewCreateOptions = {}; }
             _super.call(this, viewCreateOptions);
             this.tagName = 'footer';
-            this.className = 'footer';
+            this.className = 'globalFooter';
             this.reflectTagName();
             this.reflectAttribute();
             this.$el.append(this.renderTemplate());

@@ -6,7 +6,7 @@ module DEMO {
     export class HeaderView extends HACKLE.View {
 
         tagName: string = 'header';
-        className: string = 'header';
+        className: string = 'globalHeader';
 
         constructor(viewCreateOptions: HACKLE.IViewCreateOptions = {}) {
             super(viewCreateOptions);
@@ -27,7 +27,7 @@ module DEMO {
     export class FooterView extends HACKLE.View {
 
         tagName: string = 'footer';
-        className: string = 'footer';
+        className: string = 'globalFooter';
 
         constructor(viewCreateOptions: HACKLE.IViewCreateOptions = {}) {
             super(viewCreateOptions);
