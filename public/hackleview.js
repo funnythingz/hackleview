@@ -12,19 +12,13 @@ var HACKLE;
             this.$el = this.isJQuery(viewCreateOptions.$el) ? viewCreateOptions.$el : $('<' + this.tagName + '>');
 
             this.reflectAttribute();
-            this.renderTemplate();
         }
-        View.prototype.renderTemplate = function () {
-            var template = new HBSTemplate('hbs/test.hbs');
-            this.$el.append(template.render({ greeting: 'Hello handlebars' }));
-        };
-
         View.prototype.render = function () {
             return this;
         };
 
-        View.prototype.isJQuery = function ($that) {
-            return $that instanceof jQuery;
+        View.prototype.reflectTagName = function () {
+            this.$el = $('<' + this.tagName + '>');
         };
 
         View.prototype.reflectAttribute = function () {
@@ -43,6 +37,10 @@ var HACKLE;
             }
 
             this.$el.attr(attributes);
+        };
+
+        View.prototype.isJQuery = function ($that) {
+            return $that instanceof jQuery;
         };
         return View;
     })();

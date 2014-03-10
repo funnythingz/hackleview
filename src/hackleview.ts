@@ -27,23 +27,17 @@ module HACKLE {
             this.$el = this.isJQuery(viewCreateOptions.$el) ? viewCreateOptions.$el : $('<' + this.tagName + '>');
 
             this.reflectAttribute();
-            this.renderTemplate();
-        }
-
-        renderTemplate() {
-            var template = new HBSTemplate('hbs/test.hbs');
-            this.$el.append(template.render({greeting: 'Hello handlebars'}));
         }
 
         render(): View {
             return this;
         }
 
-        private isJQuery($that): boolean {
-            return $that instanceof jQuery;
+        reflectTagName() {
+            this.$el = $('<' + this.tagName + '>');
         }
 
-        private reflectAttribute() {
+        reflectAttribute() {
 
             var attributes = {};
 
@@ -61,6 +55,10 @@ module HACKLE {
 
             this.$el.attr(attributes);
 
+        }
+
+        private isJQuery($that): boolean {
+            return $that instanceof jQuery;
         }
 
     }
