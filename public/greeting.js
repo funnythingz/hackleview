@@ -36,14 +36,7 @@ var DEMO;
     DEMO.GreetingView = GreetingView;
 })(DEMO || (DEMO = {}));
 
-var Greeting = (function () {
-    function Greeting() {
-        var greeting = new DEMO.GreetingView();
-        $('#main').append(greeting.$el);
-    }
-    return Greeting;
-})();
-
 $(function () {
-    new Greeting();
+    var greetingView = new DEMO.GreetingView();
+    $('#main').append(greetingView.$el);
 });

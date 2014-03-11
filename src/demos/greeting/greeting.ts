@@ -35,15 +35,7 @@ module DEMO {
 
 }
 
-class Greeting {
-
-    constructor() {
-        var greeting: DEMO.GreetingView = new DEMO.GreetingView();
-        $('#main').append(greeting.$el);
-    }
-
-}
-
 $(() => {
-    new Greeting();
+    var greetingView: DEMO.GreetingView = new DEMO.GreetingView();
+    $('#main').append(greetingView.$el);
 });

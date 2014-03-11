@@ -15,10 +15,6 @@ module.exports = (grunt)->
         src: ['src/demos/greeting/**/*.js']
         dest: 'public/greeting.js'
 
-      test:
-        src: ['src/applications/hackleview/**/*.js', 'tests/applications/hackleview/**/*.js']
-        dest: 'test-build/hackleview-spec.js'
-
       options:
         separator: ';'
 
@@ -53,7 +49,7 @@ module.exports = (grunt)->
         options:
           atBegin: true
 
-    clean: ['src/**/*.js', 'tests/**/*.js', 'public/hbs/**/*.hbs']
+    clean: ['src/**/*.js', 'public/hbs/**/*.hbs']
 
     connect:
       server:
