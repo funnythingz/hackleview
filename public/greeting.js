@@ -12,10 +12,33 @@ var DEMO;
             _super.call(this);
             this.tagName = 'article';
             this.className = 'greeting';
-
             this.reflectTagName();
             this.reflectAttribute();
+            this.delegateEvents();
         }
+        GreetingView.prototype.events = function () {
+            return {
+                "click .header": this.consoleTest
+            };
+        };
+
+        GreetingView.prototype.consoleTest = function () {
+            console.log("click .header test");
+        };
+
+        GreetingView.prototype.delegateEvents = function (events) {
+            var _this = this;
+            $.map(this.events(), function (eventMethod, eventWithElement) {
+                console.log(eventMethod);
+                console.log(eventWithElement);
+                _this.$el.on('', eventMethod);
+            });
+            return this;
+        };
+
+        GreetingView.prototype.splitEventWithElement = function (eventWithElement) {
+        };
+
         GreetingView.prototype.render = function () {
             this.$el.append(this.renderTemplate());
 
@@ -41,5 +64,7 @@ var DEMO;
 
 $(function () {
     var greetingView = new DEMO.GreetingView();
+    console.log(greetingView.$el.html());
     $('#main').append(greetingView.render().$el);
+    console.log(greetingView.$el.html());
 });
