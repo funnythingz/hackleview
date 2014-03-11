@@ -9,7 +9,7 @@ var HACKLE;
             this.id = viewCreateOptions.id || '';
             this.className = viewCreateOptions.className || '';
             this.attributes = viewCreateOptions.attributes || {};
-            this.$el = this.isJQuery(viewCreateOptions.$el) ? viewCreateOptions.$el : $('<' + this.tagName + '>');
+            this.$el = isJQuery(viewCreateOptions.$el) ? viewCreateOptions.$el : $('<' + this.tagName + '>');
 
             this.reflectAttribute();
         }
@@ -37,10 +37,6 @@ var HACKLE;
             }
 
             this.$el.attr(attributes);
-        };
-
-        View.prototype.isJQuery = function ($that) {
-            return $that instanceof jQuery;
         };
         return View;
     })();
@@ -71,4 +67,9 @@ var HACKLE;
         return HBSTemplate;
     })();
     HACKLE.HBSTemplate = HBSTemplate;
+
+    function isJQuery($that) {
+        return $that instanceof jQuery;
+    }
+    HACKLE.isJQuery = isJQuery;
 })(HACKLE || (HACKLE = {}));

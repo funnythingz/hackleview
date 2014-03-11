@@ -24,7 +24,7 @@ module HACKLE {
             this.id = viewCreateOptions.id || '';
             this.className = viewCreateOptions.className || '';
             this.attributes = viewCreateOptions.attributes || {};
-            this.$el = this.isJQuery(viewCreateOptions.$el) ? viewCreateOptions.$el : $('<' + this.tagName + '>');
+            this.$el = isJQuery(viewCreateOptions.$el) ? viewCreateOptions.$el : $('<' + this.tagName + '>');
 
             this.reflectAttribute();
         }
@@ -57,10 +57,6 @@ module HACKLE {
 
         }
 
-        private isJQuery($that): boolean {
-            return $that instanceof jQuery;
-        }
-
     }
 
     export class HBSTemplate {
@@ -86,4 +82,9 @@ module HACKLE {
         }
 
     }
+
+    export function isJQuery($that): boolean {
+        return $that instanceof jQuery;
+    }
+
 }
