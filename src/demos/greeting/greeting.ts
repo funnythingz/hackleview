@@ -10,12 +10,12 @@ module DEMO {
 
         constructor() {
             super();
+
+            this.reflectTagName();
+            this.reflectAttribute();
         }
 
         render(): GreetingView {
-            this.reflectTagName();
-            this.reflectAttribute();
-
             this.$el.append(
                 this.renderTemplate()
             );
@@ -23,7 +23,7 @@ module DEMO {
             return this;
         }
 
-        renderTemplate(): string {
+        private renderTemplate(): string {
             var template = new HACKLE.HBSTemplate('hbs/greeting.hbs');
             return template.render({
                 greeting: 'Hello HACKLE.View',

@@ -12,11 +12,11 @@ var DEMO;
             _super.call(this);
             this.tagName = 'article';
             this.className = 'greeting';
-        }
-        GreetingView.prototype.render = function () {
+
             this.reflectTagName();
             this.reflectAttribute();
-
+        }
+        GreetingView.prototype.render = function () {
             this.$el.append(this.renderTemplate());
 
             return this;
