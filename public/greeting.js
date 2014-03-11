@@ -8,17 +8,20 @@ var DEMO;
 (function (DEMO) {
     var GreetingView = (function (_super) {
         __extends(GreetingView, _super);
-        function GreetingView(viewCreateOptions) {
-            if (typeof viewCreateOptions === "undefined") { viewCreateOptions = {}; }
-            _super.call(this, viewCreateOptions);
+        function GreetingView() {
+            _super.call(this);
             this.tagName = 'article';
             this.className = 'greeting';
-
+        }
+        GreetingView.prototype.render = function () {
             this.reflectTagName();
             this.reflectAttribute();
 
             this.$el.append(this.renderTemplate());
-        }
+
+            return this;
+        };
+
         GreetingView.prototype.renderTemplate = function () {
             var template = new HACKLE.HBSTemplate('hbs/greeting.hbs');
             return template.render({
@@ -38,5 +41,5 @@ var DEMO;
 
 $(function () {
     var greetingView = new DEMO.GreetingView();
-    $('#main').append(greetingView.$el);
+    $('#main').append(greetingView.render().$el);
 });

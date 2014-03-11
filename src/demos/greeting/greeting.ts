@@ -8,15 +8,19 @@ module DEMO {
         tagName: string = 'article';
         className: string = 'greeting';
 
-        constructor(viewCreateOptions: HACKLE.IViewCreateOptions = {}) {
-            super(viewCreateOptions);
+        constructor() {
+            super();
+        }
 
+        render(): GreetingView {
             this.reflectTagName();
             this.reflectAttribute();
 
             this.$el.append(
                 this.renderTemplate()
             );
+
+            return this;
         }
 
         renderTemplate(): string {
@@ -37,5 +41,5 @@ module DEMO {
 
 $(() => {
     var greetingView: DEMO.GreetingView = new DEMO.GreetingView();
-    $('#main').append(greetingView.$el);
+    $('#main').append(greetingView.render().$el);
 });
