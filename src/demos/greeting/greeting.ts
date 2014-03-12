@@ -23,7 +23,7 @@ module DEMO {
         events(): Object {
             return {
                 "click .header" : this.consoleTest
-            }
+            };
         }
 
         private consoleTest() {
@@ -34,13 +34,16 @@ module DEMO {
             $.map(this.events(), (eventMethod, eventWithElement) => {
                 console.log(eventMethod);
                 console.log(eventWithElement);
-                this.$el.on('', eventMethod);
+                //this.$el.on('', eventMethod);
             });
             return this;
         }
 
         private splitEventWithElement(eventWithElement): IEventWithSelector {
-            
+            return {
+                'eventName': 'click',
+                'selector': '.header'
+            }
         }
 
         render(): GreetingView {

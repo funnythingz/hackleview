@@ -27,16 +27,18 @@ var DEMO;
         };
 
         GreetingView.prototype.delegateEvents = function (events) {
-            var _this = this;
             $.map(this.events(), function (eventMethod, eventWithElement) {
                 console.log(eventMethod);
                 console.log(eventWithElement);
-                _this.$el.on('', eventMethod);
             });
             return this;
         };
 
         GreetingView.prototype.splitEventWithElement = function (eventWithElement) {
+            return {
+                'eventName': 'click',
+                'selector': '.header'
+            };
         };
 
         GreetingView.prototype.render = function () {
