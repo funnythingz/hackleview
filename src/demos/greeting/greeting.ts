@@ -3,11 +3,6 @@
 
 module DEMO {
 
-    export interface IEventWithSelector {
-        eventName: string;
-        selector: string;
-    }
-
     export class GreetingView extends HACKLE.View {
 
         tagName: string = 'article';
@@ -17,33 +12,19 @@ module DEMO {
             super();
             this.reflectTagName();
             this.reflectAttribute();
-            this.delegateEvents();
+            this.delegateEvents(this.events);
         }
 
-        events(): Object {
-            return {
-                "click .header" : this.consoleTest
-            };
-        }
-
-        private consoleTest() {
-            console.log("click .header test");
-        }
-
-        delegateEvents(events?: Object): GreetingView {
-            $.map(this.events(), (eventMethod, eventWithElement) => {
-                console.log(eventMethod);
-                console.log(eventWithElement);
-                //this.$el.on('', eventMethod);
-            });
-            return this;
-        }
-
-        private splitEventWithElement(eventWithElement): IEventWithSelector {
-            return {
-                'eventName': 'click',
-                'selector': '.header'
+        events = {
+            "click .header" : this.headerTest,
+            "click .cat" : function(event) {
+                event.preventDefault();
+                console.log('cat');
             }
+        }
+
+        private headerTest() {
+            console.log("click .header");
         }
 
         render(): GreetingView {

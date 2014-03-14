@@ -38,6 +38,23 @@ var HACKLE;
 
             this.$el.attr(attributes);
         };
+
+        View.prototype.delegateEvents = function (events) {
+            var _this = this;
+            $.map(events, function (eventMethod, eventWithElement) {
+                var eventElementPair = _this.splitEventWithElement(eventWithElement);
+                _this.$el.on.call(_this.$el, eventElementPair.eventName, eventElementPair.selector, eventMethod);
+            });
+            return this;
+        };
+
+        View.prototype.splitEventWithElement = function (eventWithElement) {
+            var resultPair = eventWithElement.split(' ', 2);
+            return {
+                'eventName': resultPair[0],
+                'selector': resultPair[1]
+            };
+        };
         return View;
     })();
     HACKLE.View = View;

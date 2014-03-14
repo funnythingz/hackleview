@@ -12,33 +12,19 @@ var DEMO;
             _super.call(this);
             this.tagName = 'article';
             this.className = 'greeting';
+            this.events = {
+                "click .header": this.headerTest,
+                "click .cat": function (event) {
+                    event.preventDefault();
+                    console.log('cat');
+                }
+            };
             this.reflectTagName();
             this.reflectAttribute();
-            this.delegateEvents();
+            this.delegateEvents(this.events);
         }
-        GreetingView.prototype.events = function () {
-            return {
-                "click .header": this.consoleTest
-            };
-        };
-
-        GreetingView.prototype.consoleTest = function () {
-            console.log("click .header test");
-        };
-
-        GreetingView.prototype.delegateEvents = function (events) {
-            $.map(this.events(), function (eventMethod, eventWithElement) {
-                console.log(eventMethod);
-                console.log(eventWithElement);
-            });
-            return this;
-        };
-
-        GreetingView.prototype.splitEventWithElement = function (eventWithElement) {
-            return {
-                'eventName': 'click',
-                'selector': '.header'
-            };
+        GreetingView.prototype.headerTest = function () {
+            console.log("click .header");
         };
 
         GreetingView.prototype.render = function () {
