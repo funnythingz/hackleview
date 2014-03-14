@@ -54,7 +54,6 @@ module DEMO {
 
 $(() => {
     var greetingView: DEMO.GreetingView = new DEMO.GreetingView();
-    console.log(greetingView.$el.html());
     $('#main').append(greetingView.render().$el);
     console.log(greetingView.$el.html());
 });
