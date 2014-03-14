@@ -1,36 +1,42 @@
 /// <reference path="../definitions/mocha.d.ts" />
 /// <reference path="../definitions/chai.d.ts" />
+/// <reference path="../definitions/should.d.ts" />
 
 /// <reference path="../src/applications/hackleview/hackleview.ts" />
 
 module HACKLE {
 
-    var expect = chai.expect;
+    chai.should();
 
     describe("HACKLE.View", function() {
+
+        it("test", function() {
+            var hoge: string = "hoge";
+            hoge.should.be.equal("hoge");
+        });
 
         describe("on the default instance", function() {
 
             var div: View = new View();
 
             it("div.$el to instanceof `jQuery`", function() {
-                expect(div.$el).to.instanceof(jQuery);
+                div.$el.should.be.instanceof(jQuery);
             });
 
             it("div.$el has `DIV` of tagName", function() {
-                expect(div.$el.get(0).tagName).to.equal('DIV');
+                div.$el.get(0).tagName.should.be.equal('DIV');
             });
 
             it("div.$el has not id", function() {
-                expect(div.$el.get(0).id).to.equal('');
+                div.$el.get(0).id.should.be.equal('');
             });
 
             it("div.$el has not any classList", function() {
-                expect(div.$el.get(0).classList).to.have.length(0);
+                div.$el.get(0).classList.should.be.have.length(0);
             });
 
             it("div.$el has not any attributes", function() {
-                expect(div.$el.get(0).attributes).to.have.length(0);
+                div.$el.get(0).attributes.should.be.have.length(0);
             });
 
         });
@@ -44,15 +50,15 @@ module HACKLE {
                           });
 
             it("p.$el has `P` of tagName", function() {
-                expect(p.$el.get(0).tagName).to.equal('P');
+                p.$el.get(0).tagName.should.be.equal('P');
             });
 
             it("p.$el has `poge` class of attribute", function() {
-                expect(p.$el.hasClass('poge')).to.be.true;
+                p.$el.hasClass('poge').should.be.true;
             });
 
             it("p.$el has `pid` id of attribute", function() {
-                expect(p.$el.get(0).id).to.equal('pid');
+                p.$el.get(0).id.should.be.equal('pid');
             });
 
         });

@@ -11,6 +11,11 @@ module HACKLE {
         attributes?: Object;
     }
 
+    export interface IEventWithSelector {
+        eventName: string;
+        selector: string;
+    }
+
     export class View {
 
         tagName: string = 'div';
@@ -55,6 +60,25 @@ module HACKLE {
 
             this.$el.attr(attributes);
 
+        }
+
+        delegateEvents(events?: Object): View {
+            $.map(events, (eventMethod, eventWithElement) => {
+                var eventElementPair = this.splitEventWithElement(eventWithElement);
+                this.$el.on.call(this.$el,
+                                 eventElementPair.eventName,
+                                 eventElementPair.selector,
+                                 eventMethod);
+            });
+            return this;
+        }
+
+        private splitEventWithElement(eventWithElement): IEventWithSelector {
+            var resultPair = eventWithElement.split(' ', 2);
+            return {
+                'eventName': resultPair[0],
+                'selector':  resultPair[1]
+            }
         }
 
     }

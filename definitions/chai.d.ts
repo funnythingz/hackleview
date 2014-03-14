@@ -162,4 +162,10 @@ declare module chai {
         (constructor: Function, expected?: string, message?: string): Expect;
         (constructor: Function, expected?: RegExp, message?: string): Expect;
     }
+
+    export function should(): void;
+
+    interface Object {
+        should: Expect;
+    }
 }

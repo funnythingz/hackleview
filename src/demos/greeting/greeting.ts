@@ -10,9 +10,21 @@ module DEMO {
 
         constructor() {
             super();
-
             this.reflectTagName();
             this.reflectAttribute();
+            this.delegateEvents(this.events);
+        }
+
+        events = {
+            "click .header" : this.headerTest,
+            "click .cat" : function(event) {
+                event.preventDefault();
+                console.log('cat');
+            }
+        }
+
+        private headerTest() {
+            console.log("click .header");
         }
 
         render(): GreetingView {
@@ -43,4 +55,5 @@ module DEMO {
 $(() => {
     var greetingView: DEMO.GreetingView = new DEMO.GreetingView();
     $('#main').append(greetingView.render().$el);
+    console.log(greetingView.$el.html());
 });
