@@ -91,15 +91,16 @@ module HACKLE {
             var resultHTML: string;
             var _hbsName = this.hbsName;
 
-            $.ajax({
+            var $getHBSTemplate = $.ajax({
                 url: _hbsName,
                 type: 'get',
                 dataType: 'html',
-                async: false,
-                success: (hbs) => {
-                    var template = Handlebars.compile(hbs);
-                    resultHTML = template(data);
-                }
+                async: false
+            });
+            
+            $getHBSTemplate.done((hbs) => {
+                var template = Handlebars.compile(hbs);
+                resultHTML = template(data);
             });
 
             return resultHTML;

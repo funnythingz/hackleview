@@ -68,15 +68,16 @@ var HACKLE;
             var resultHTML;
             var _hbsName = this.hbsName;
 
-            $.ajax({
+            var $getHBSTemplate = $.ajax({
                 url: _hbsName,
                 type: 'get',
                 dataType: 'html',
-                async: false,
-                success: function (hbs) {
-                    var template = Handlebars.compile(hbs);
-                    resultHTML = template(data);
-                }
+                async: false
+            });
+
+            $getHBSTemplate.done(function (hbs) {
+                var template = Handlebars.compile(hbs);
+                resultHTML = template(data);
             });
 
             return resultHTML;
