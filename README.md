@@ -2,6 +2,18 @@
 
 Simple View for TypeScript.
 
+## Interface
+
+```typescript
+interface IViewCreateOptions {
+    $el?: JQuery;
+    tagName?: string;
+    id?: string;
+    className?: string;
+    attributes?: Object;
+}
+```
+
 ## Usage
 
 require `jquery.js` and `handlebars.js`.
