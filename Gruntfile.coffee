@@ -8,11 +8,11 @@ module.exports = (grunt)->
 
     concat:
       hackleview:
-        src: ['src/applications/hackleview/**/*.js']
+        src: ['src/hackleview/**/*.js']
         dest: 'public/hackleview.js'
 
       demo_greeting:
-        src: ['src/demos/greeting/**/*.js']
+        src: ['src/greeting/**/*.js']
         dest: 'public/greeting.js'
 
       options:

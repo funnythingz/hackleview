@@ -1,5 +1,5 @@
-/// <reference path="../../../definitions/jquery.d.ts" />
-/// <reference path="../../applications/hackleview/hackleview.ts" />
+/// <reference path="../../definitions/jquery.d.ts" />
+/// <reference path="../hackleview/hackleview.ts" />
 
 module DEMO {
 

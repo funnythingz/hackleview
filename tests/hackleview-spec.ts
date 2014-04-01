@@ -2,7 +2,7 @@
 /// <reference path="../definitions/chai.d.ts" />
 /// <reference path="../definitions/should.d.ts" />
 
-/// <reference path="../src/applications/hackleview/hackleview.ts" />
+/// <reference path="../src/hackleview/hackleview.ts" />
 
 module HACKLE {
 
