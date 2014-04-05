@@ -3,3 +3,4 @@ lib
 .npm-debug.log
 .sass-cache
 .DS_Store
+bower_components

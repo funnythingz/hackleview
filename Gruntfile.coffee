@@ -4,30 +4,56 @@ module.exports = (grunt)->
 
     uglify:
       dist:
-        files: 'public/hackleview.min.js': ['public/hackleview.js']
+        files: 'public/js/hackleview.min.js': ['public/js/hackleview.js']
 
     concat:
       hackleview:
-        src: ['src/hackleview/**/*.js']
-        dest: 'public/hackleview.js'
+        src: ['src/ts/hackleview/**/*.js']
+        dest: 'public/js/hackleview.js'
 
-      demo_greeting:
-        src: ['src/greeting/**/*.js']
-        dest: 'public/greeting.js'
+      greeting:
+        src: ['src/ts/greeting/**/*.js']
+        dest: 'public/js/greeting.js'
 
       options:
         separator: ';'
 
     copy:
-      dist:
+      hbs:
         files: [{
-          src: ['hbs/**/*.hbs']
+          expand: true
+          cwd: 'src/hbs'
+          src: ['**/*.hbs']
+          dest: 'public/hbs/'
+        }]
+
+      html:
+        files: [{
+          expand: true
+          cwd: 'src/html'
+          src: ['**/*.html']
           dest: 'public/'
+        }]
+
+      jquery:
+        files: [{
+          expand: true
+          cwd: 'bower_components/jquery/dist/'
+          src: ['jquery.min.js']
+          dest: 'public/js/'
+        }]
+
+      handlebars:
+        files: [{
+          expand: true
+          cwd: 'bower_components/handlebars/'
+          src: ['handlebars.min.js']
+          dest: 'public/js/'
         }]
 
     typescript:
       base:
-        src: ['src/**/*.ts', 'tests/**/*.ts']
+        src: ['src/ts/**/*.ts', 'tests/**/*.ts']
         options:
           sourceMap: false
 
@@ -38,13 +64,13 @@ module.exports = (grunt)->
 
     watch:
       typescript:
-        files: ['src/**/*.ts', 'tests/**/*.ts', 'hbs/**/*.hbs']
+        files: ['src/ts/**/*.ts', 'tests/**/*.ts']
         tasks: ['typescript', 'concat', 'uglify', 'clean', 'copy']
         options:
           atBegin: true
 
       css:
-        files: ['sass/**/*.scss']
+        files: ['src/scss/**/*.scss']
         tasks: ['compass']
         options:
           atBegin: true
