@@ -13,15 +13,17 @@ var DEMO;
             this.tagName = 'article';
             this.className = 'greeting';
             this.events = {
-                "click .header": this.headerTest,
+                "click .header > h1 > span.text": this.headerTest,
                 "click .cat": function (event) {
                     event.preventDefault();
                     console.log('cat');
                 }
             };
+
             this.reflectTagName();
             this.reflectAttribute();
             this.delegateEvents(this.events);
+            this.render();
         }
         GreetingView.prototype.headerTest = function () {
             console.log("click .header");
@@ -52,6 +54,5 @@ var DEMO;
 
 $(function () {
     var greetingView = new DEMO.GreetingView();
-    $('#main').append(greetingView.render().$el);
-    console.log(greetingView.$el.html());
+    $('#main').append(greetingView.$el);
 });

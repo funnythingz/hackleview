@@ -75,6 +75,18 @@ module.exports = (grunt)->
         options:
           atBegin: true
 
+      hbs:
+        files: ['src/hbs/**/*.hbs']
+        tasks: ['clean', 'copy:hbs']
+        options:
+          atBegin: true
+
+      html:
+        files: ['src/html/**/*.html']
+        tasks: ['copy:html']
+        options:
+          atBegin: true
+
     clean: ['src/**/*.js', 'public/hbs/**/*.hbs']
 
     connect:

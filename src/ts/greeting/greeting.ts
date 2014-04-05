@@ -10,13 +10,15 @@ module DEMO {
 
         constructor() {
             super();
+
             this.reflectTagName();
             this.reflectAttribute();
             this.delegateEvents(this.events);
+            this.render();
         }
 
         events = {
-            "click .header" : this.headerTest,
+            "click .header > h1 > span.text" : this.headerTest,
             "click .cat" : function(event) {
                 event.preventDefault();
                 console.log('cat');
@@ -54,6 +56,5 @@ module DEMO {
 
 $(() => {
     var greetingView: DEMO.GreetingView = new DEMO.GreetingView();
-    $('#main').append(greetingView.render().$el);
-    console.log(greetingView.$el.html());
+    $('#main').append(greetingView.$el);
 });

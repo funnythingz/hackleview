@@ -1,9 +1,9 @@
 {
   "framework" : "mocha+chai",
   "src_files" : [
-    "public/jquery.min.js",
-    "public/handlebars.min.js",
-    "public/hackleview.js",
+    "public/js/jquery.min.js",
+    "public/js/handlebars.min.js",
+    "public/js/hackleview.js",
     "tests/**/*.js"
   ]
 }

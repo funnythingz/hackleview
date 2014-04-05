@@ -5,6 +5,7 @@ var HACKLE;
             if (typeof viewCreateOptions === "undefined") { viewCreateOptions = {}; }
             this.tagName = 'div';
             this.attributes = {};
+            this.events = {};
             this.tagName = viewCreateOptions.tagName || 'div';
             this.id = viewCreateOptions.id || '';
             this.className = viewCreateOptions.className || '';
@@ -41,18 +42,22 @@ var HACKLE;
 
         View.prototype.delegateEvents = function (events) {
             var _this = this;
-            $.map(events, function (eventMethod, eventWithElement) {
-                var eventElementPair = _this.splitEventWithElement(eventWithElement);
-                _this.$el.on.call(_this.$el, eventElementPair.eventName, eventElementPair.selector, eventMethod);
+            $.map(events, function (eventMethod, eventWithSelector) {
+                var eventAndSelectorPair = _this.splitEventWithSelector(eventWithSelector);
+                _this.$el.on.call(_this.$el, eventAndSelectorPair.eventName, eventAndSelectorPair.selector, eventMethod);
             });
             return this;
         };
 
-        View.prototype.splitEventWithElement = function (eventWithElement) {
-            var resultPair = eventWithElement.split(' ', 2);
+        View.prototype.splitEventWithSelector = function (eventWithSelector) {
+            var resultPair = eventWithSelector.split(' ');
+
+            var eventName = resultPair.shift();
+            var selector = resultPair.join(' ');
+
             return {
-                'eventName': resultPair[0],
-                'selector': resultPair[1]
+                'eventName': eventName,
+                'selector': selector
             };
         };
         return View;

@@ -38,6 +38,8 @@ module HACKLE {
             return this;
         }
 
+        events = {}
+
         reflectTagName() {
             this.$el = $('<' + this.tagName + '>');
         }
@@ -63,21 +65,25 @@ module HACKLE {
         }
 
         delegateEvents(events?: Object): View {
-            $.map(events, (eventMethod, eventWithElement) => {
-                var eventElementPair = this.splitEventWithElement(eventWithElement);
+            $.map(events, (eventMethod, eventWithSelector) => {
+                var eventAndSelectorPair = this.splitEventWithSelector(eventWithSelector);
                 this.$el.on.call(this.$el,
-                                 eventElementPair.eventName,
-                                 eventElementPair.selector,
+                                 eventAndSelectorPair.eventName,
+                                 eventAndSelectorPair.selector,
                                  eventMethod);
             });
             return this;
         }
 
-        private splitEventWithElement(eventWithElement): IEventWithSelector {
-            var resultPair = eventWithElement.split(' ', 2);
+        private splitEventWithSelector(eventWithSelector): IEventWithSelector {
+            var resultPair: string[] = eventWithSelector.split(' ');
+
+            var eventName: string = resultPair.shift();
+            var selector: string = resultPair.join(' ');
+
             return {
-                'eventName': resultPair[0],
-                'selector':  resultPair[1]
+                'eventName': eventName,
+                'selector':  selector
             }
         }
 
