@@ -18,15 +18,20 @@ module DEMO {
         }
 
         events = {
-            "click .header > h1 > span.text" : this.headerTest,
+            "click .header > h1 > span.text" : this.headerFunc,
+            "click .dog" : [this.dogFunc, {value : 'with data'}],
             "click .cat" : function(event) {
                 event.preventDefault();
                 console.log('cat');
             }
         }
 
-        private headerTest() {
+        private headerFunc() {
             console.log("click .header");
+        }
+
+        private dogFunc(event, data) {
+            console.log("click .dog " + event.data.value);
         }
 
         render(): GreetingView {
@@ -43,8 +48,7 @@ module DEMO {
                 greeting: 'Hello HACKLE.View',
                 animals: [
                     {name: 'cat', anchor: '#cat'},
-                    {name: 'dog', anchor: '#dog'},
-                    {name: 'rion', anchor: '#rion'}
+                    {name: 'dog', anchor: '#dog'}
                 ],
                 copyright: "funnythingz"
             });

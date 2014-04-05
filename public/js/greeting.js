@@ -13,7 +13,8 @@ var DEMO;
             this.tagName = 'article';
             this.className = 'greeting';
             this.events = {
-                "click .header > h1 > span.text": this.headerTest,
+                "click .header > h1 > span.text": this.headerFunc,
+                "click .dog": [this.dogFunc, { value: 'with data' }],
                 "click .cat": function (event) {
                     event.preventDefault();
                     console.log('cat');
@@ -25,8 +26,12 @@ var DEMO;
             this.delegateEvents(this.events);
             this.render();
         }
-        GreetingView.prototype.headerTest = function () {
+        GreetingView.prototype.headerFunc = function () {
             console.log("click .header");
+        };
+
+        GreetingView.prototype.dogFunc = function (event, data) {
+            console.log("click .dog " + event.data.value);
         };
 
         GreetingView.prototype.render = function () {
@@ -41,8 +46,7 @@ var DEMO;
                 greeting: 'Hello HACKLE.View',
                 animals: [
                     { name: 'cat', anchor: '#cat' },
-                    { name: 'dog', anchor: '#dog' },
-                    { name: 'rion', anchor: '#rion' }
+                    { name: 'dog', anchor: '#dog' }
                 ],
                 copyright: "funnythingz"
             });

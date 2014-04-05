@@ -11,11 +11,6 @@ module HACKLE {
         attributes?: Object;
     }
 
-    export interface IEventWithSelector {
-        eventName: string;
-        selector: string;
-    }
-
     export class View {
 
         tagName: string = 'div';
@@ -65,26 +60,55 @@ module HACKLE {
         }
 
         delegateEvents(events?: Object): View {
-            $.map(events, (eventMethod, eventWithSelector) => {
-                var eventAndSelectorPair = this.splitEventWithSelector(eventWithSelector);
+            $.map(events, (eventMethodWithData, eventWithSelector) => {
+
+                var splitEventMethodWithData = new SplitEventMethodWithData(eventMethodWithData);
+
+                var eventAndSelectorPair = splitEventWithSelector(eventWithSelector);
+
                 this.$el.on.call(this.$el,
                                  eventAndSelectorPair.eventName,
                                  eventAndSelectorPair.selector,
-                                 eventMethod);
+                                 splitEventMethodWithData.data,
+                                 splitEventMethodWithData.method);
+
             });
+
             return this;
         }
 
-        private splitEventWithSelector(eventWithSelector): IEventWithSelector {
-            var resultPair: string[] = eventWithSelector.split(' ');
+    }
 
-            var eventName: string = resultPair.shift();
-            var selector: string = resultPair.join(' ');
+    interface IEventWithSelector {
+        eventName: string;
+        selector: string;
+    }
 
-            return {
-                'eventName': eventName,
-                'selector':  selector
+    function splitEventWithSelector(eventWithSelector): IEventWithSelector {
+        var resultPair: string[] = eventWithSelector.split(' ');
+
+        var eventName: string = resultPair.shift();
+        var selector: string = resultPair.join(' ');
+
+        return {
+            'eventName': eventName,
+            'selector':  selector
+        }
+    }
+
+    class SplitEventMethodWithData {
+
+        method: any;
+        data: any = null;
+
+        constructor(methodWithData) {
+            if(typeof methodWithData === 'object') {
+                this.method = methodWithData[0];
+                this.data = methodWithData[1];
+            } else {
+                this.method = methodWithData;
             }
+
         }
 
     }

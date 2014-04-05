@@ -42,27 +42,44 @@ var HACKLE;
 
         View.prototype.delegateEvents = function (events) {
             var _this = this;
-            $.map(events, function (eventMethod, eventWithSelector) {
-                var eventAndSelectorPair = _this.splitEventWithSelector(eventWithSelector);
-                _this.$el.on.call(_this.$el, eventAndSelectorPair.eventName, eventAndSelectorPair.selector, eventMethod);
+            $.map(events, function (eventMethodWithData, eventWithSelector) {
+                var splitEventMethodWithData = new SplitEventMethodWithData(eventMethodWithData);
+
+                var eventAndSelectorPair = splitEventWithSelector(eventWithSelector);
+
+                _this.$el.on.call(_this.$el, eventAndSelectorPair.eventName, eventAndSelectorPair.selector, splitEventMethodWithData.data, splitEventMethodWithData.method);
             });
+
             return this;
-        };
-
-        View.prototype.splitEventWithSelector = function (eventWithSelector) {
-            var resultPair = eventWithSelector.split(' ');
-
-            var eventName = resultPair.shift();
-            var selector = resultPair.join(' ');
-
-            return {
-                'eventName': eventName,
-                'selector': selector
-            };
         };
         return View;
     })();
     HACKLE.View = View;
+
+    function splitEventWithSelector(eventWithSelector) {
+        var resultPair = eventWithSelector.split(' ');
+
+        var eventName = resultPair.shift();
+        var selector = resultPair.join(' ');
+
+        return {
+            'eventName': eventName,
+            'selector': selector
+        };
+    }
+
+    var SplitEventMethodWithData = (function () {
+        function SplitEventMethodWithData(methodWithData) {
+            this.data = null;
+            if (typeof methodWithData === 'object') {
+                this.method = methodWithData[0];
+                this.data = methodWithData[1];
+            } else {
+                this.method = methodWithData;
+            }
+        }
+        return SplitEventMethodWithData;
+    })();
 
     var HBSTemplate = (function () {
         function HBSTemplate(hbsName) {
