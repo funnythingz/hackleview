@@ -138,6 +138,19 @@ module HACKLE {
 
     }
 
+    export class HBSTemplateFromString {
+
+        constructor(private hbs: string) {}
+
+        render(data: Object = {}): string {
+            var template = Handlebars.compile(this.hbs);
+            var resultHTML: string = template(data);
+
+            return resultHTML;
+        }
+
+    }
+
     export function isJQuery($that): boolean {
         return $that instanceof jQuery;
     }
