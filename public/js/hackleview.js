@@ -108,6 +108,21 @@ var HACKLE;
     })();
     HACKLE.HBSTemplate = HBSTemplate;
 
+    var HBSTemplateFromString = (function () {
+        function HBSTemplateFromString(hbs) {
+            this.hbs = hbs;
+        }
+        HBSTemplateFromString.prototype.render = function (data) {
+            if (typeof data === "undefined") { data = {}; }
+            var template = Handlebars.compile(this.hbs);
+            var resultHTML = template(data);
+
+            return resultHTML;
+        };
+        return HBSTemplateFromString;
+    })();
+    HACKLE.HBSTemplateFromString = HBSTemplateFromString;
+
     function isJQuery($that) {
         return $that instanceof jQuery;
     }
