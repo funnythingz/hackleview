@@ -1,8 +1,7 @@
 {
   "name": "HACKLE.View",
   "dependencies": {
-    "handlebars": "v1.3.0",
-    "jquery": "",
-    "handlebars": ""
+    "handlebars": "https://github.com/components/handlebars.js.git#~v1.3.0",
+    "jquery": "https://github.com/jquery/jquery.git#~v2.1.0"
   }
 }
