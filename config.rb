@@ -1,8 +1,8 @@
 http_path = "/"
-css_dir = "public/css"
+css_dir = "build/css"
 sass_dir = "src/scss"
-images_dir = "public/imgs"
-javascripts_dir = "public/js"
+images_dir = "build/imgs"
+javascripts_dir = "build/js"
 
 output_style = :compressed
 line_comments = false

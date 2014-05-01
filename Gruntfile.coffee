@@ -1,19 +1,32 @@
 module.exports = (grunt)->
+
+  grunt.loadNpmTasks('grunt-contrib-compass')
+  grunt.loadNpmTasks('grunt-typescript')
+  grunt.loadNpmTasks('grunt-contrib-concat')
+  grunt.loadNpmTasks('grunt-contrib-uglify')
+  grunt.loadNpmTasks('grunt-contrib-watch')
+  grunt.loadNpmTasks('grunt-contrib-connect')
+  grunt.loadNpmTasks('grunt-contrib-clean')
+  grunt.loadNpmTasks('grunt-contrib-copy')
+
+  grunt.registerTask('default', ['typescript', 'concat', 'uglify', 'clean', 'copy', 'compass'])
+  grunt.registerTask('server', ['connect'])
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json')
 
     uglify:
       dist:
-        files: 'public/js/hackleview.min.js': ['public/js/hackleview.js']
+        files: 'build/js/hackleview.min.js': ['build/js/hackleview.js']
 
     concat:
       hackleview:
         src: ['src/ts/hackleview/**/*.js']
-        dest: 'public/js/hackleview.js'
+        dest: 'build/js/hackleview.js'
 
       greeting:
         src: ['src/ts/greeting/**/*.js']
-        dest: 'public/js/greeting.js'
+        dest: 'build/js/greeting.js'
 
       options:
         separator: ';'
@@ -24,7 +37,7 @@ module.exports = (grunt)->
           expand: true
           cwd: 'src/hbs'
           src: ['**/*.hbs']
-          dest: 'public/hbs/'
+          dest: 'build/hbs/'
         }]
 
       html:
@@ -32,7 +45,7 @@ module.exports = (grunt)->
           expand: true
           cwd: 'src/html'
           src: ['**/*.html']
-          dest: 'public/'
+          dest: 'build/'
         }]
 
       jquery:
@@ -40,7 +53,7 @@ module.exports = (grunt)->
           expand: true
           cwd: 'bower_components/jquery/dist/'
           src: ['jquery.min.js']
-          dest: 'public/js/'
+          dest: 'build/js/'
         }]
 
       handlebars:
@@ -48,7 +61,7 @@ module.exports = (grunt)->
           expand: true
           cwd: 'bower_components/handlebars/'
           src: ['handlebars.min.js']
-          dest: 'public/js/'
+          dest: 'build/js/'
         }]
 
     typescript:
@@ -87,25 +100,13 @@ module.exports = (grunt)->
         options:
           atBegin: true
 
-    clean: ['src/**/*.js', 'public/hbs/**/*.hbs']
+    clean: ['src/**/*.js', 'build/hbs/**/*.hbs']
 
     connect:
       server:
         options:
           port: 8000
-          base: 'public'
+          base: 'build'
           keepalive: true
 
   })
-
-  grunt.loadNpmTasks('grunt-contrib-compass')
-  grunt.loadNpmTasks('grunt-typescript')
-  grunt.loadNpmTasks('grunt-contrib-concat')
-  grunt.loadNpmTasks('grunt-contrib-uglify')
-  grunt.loadNpmTasks('grunt-contrib-watch')
-  grunt.loadNpmTasks('grunt-contrib-connect')
-  grunt.loadNpmTasks('grunt-contrib-clean')
-  grunt.loadNpmTasks('grunt-contrib-copy')
-
-  grunt.registerTask('default', ['typescript', 'concat', 'uglify', 'clean', 'copy', 'compass'])
-  grunt.registerTask('server', ['connect'])
