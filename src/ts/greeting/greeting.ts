@@ -43,7 +43,9 @@ module DEMO {
         }
 
         private renderTemplate(): string {
-            var template = new HACKLE.HBSTemplate('hbs/greeting.hbs');
+
+            var template = new HACKLE.HBSTemplate('src/hbs/greeting.hbs');
+
             return template.render({
                 greeting: 'Hello HACKLE.View',
                 animals: [

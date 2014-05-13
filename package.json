@@ -1,6 +1,6 @@
 {
   "name": "HACKLE.View",
-  "version": "0.0.0",
+  "version": "0.5.0",
   "description": "Simple View for TypeScript",
   "author": "funnythingz",
   "license": "BSD",
@@ -15,6 +15,7 @@
     "grunt-contrib-concat": "latest",
     "grunt-contrib-connect": "latest",
     "grunt-contrib-copy": "latest",
+    "grunt-contrib-handlebars": "~0.8.0",
     "testem": "~0.6.2",
     "chai": "~1.9.0"
   }
