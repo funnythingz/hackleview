@@ -3,7 +3,7 @@
   "src_files" : [
     "build/js/jquery.min.js",
     "build/js/handlebars.min.js",
-    "build/js/hackleview.js",
+    "build/js/app.min.js",
     "tests/**/*.js"
   ]
 }

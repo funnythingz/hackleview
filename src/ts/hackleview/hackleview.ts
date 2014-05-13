@@ -1,6 +1,8 @@
 /// <reference path="../../../definitions/jquery.d.ts" />
 /// <reference path="../../../definitions/handlebars.d.ts" />
 
+declare var HACKLE_HBS;
+
 module HACKLE {
 
     export interface IViewCreateOptions {
@@ -118,22 +120,7 @@ module HACKLE {
         constructor(private hbsName: string) {}
 
         render(data: Object = {}): string {
-            var resultHTML: string;
-            var _hbsName = this.hbsName;
-
-            var $getHBSTemplate = $.ajax({
-                url: _hbsName,
-                type: 'get',
-                dataType: 'html',
-                async: false
-            });
-            
-            $getHBSTemplate.done((hbs) => {
-                var template = Handlebars.compile(hbs);
-                resultHTML = template(data);
-            });
-
-            return resultHTML;
+            return HACKLE_HBS.Templates[this.hbsName](data);
         }
 
     }

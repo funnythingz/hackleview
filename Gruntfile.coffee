@@ -8,8 +8,9 @@ module.exports = (grunt)->
   grunt.loadNpmTasks('grunt-contrib-connect')
   grunt.loadNpmTasks('grunt-contrib-clean')
   grunt.loadNpmTasks('grunt-contrib-copy')
+  grunt.loadNpmTasks('grunt-contrib-handlebars')
 
-  grunt.registerTask('default', ['typescript', 'concat', 'uglify', 'clean', 'copy', 'compass'])
+  grunt.registerTask('default', ['typescript', 'handlebars', 'concat', 'uglify', 'clean', 'copy', 'compass'])
   grunt.registerTask('server', ['connect'])
 
   grunt.initConfig({
@@ -17,16 +18,20 @@ module.exports = (grunt)->
 
     uglify:
       dist:
-        files: 'build/js/hackleview.min.js': ['build/js/hackleview.js']
+        files: 'build/js/app.min.js': ['build/js/app.js']
+
+    handlebars:
+      compile:
+        options:
+          namespace: 'HACKLE_HBS.Templates'
+
+        files:
+          'src/hbs/hbs-templates.js': [ 'src/hbs/**/*.hbs']
 
     concat:
-      hackleview:
-        src: ['src/ts/hackleview/**/*.js']
-        dest: 'build/js/hackleview.js'
-
-      greeting:
-        src: ['src/ts/greeting/**/*.js']
-        dest: 'build/js/greeting.js'
+      js:
+        src: ['src/hbs/hbs-templates.js', 'src/ts/hackleview/**/*.js', 'src/ts/greeting/**/*.js']
+        dest: 'build/js/app.js'
 
       options:
         separator: ';'
@@ -78,7 +83,7 @@ module.exports = (grunt)->
     watch:
       typescript:
         files: ['src/ts/**/*.ts', 'tests/**/*.ts']
-        tasks: ['typescript', 'concat', 'uglify', 'clean', 'copy']
+        tasks: ['typescript', 'handlebars', 'concat', 'uglify', 'clean', 'copy']
         options:
           atBegin: true
 
@@ -100,7 +105,7 @@ module.exports = (grunt)->
         options:
           atBegin: true
 
-    clean: ['src/**/*.js', 'build/hbs/**/*.hbs']
+    clean: ['src/hbs/**/*.js', 'src/**/*.js', 'build/hbs/**/*.hbs']
 
     connect:
       server:
