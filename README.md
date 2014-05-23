@@ -88,21 +88,16 @@ require `jquery.js` and `handlebars.js`.
 
 ### TypeScript
 
-compile to `greeting.js`.
+`ts/greeting.ts`
 
 ```typescript
 module DEMO {
 
     export class GreetingView extends HACKLE.View {
 
-        tagName: string = 'article';
-        className: string = 'greeting';
-
         constructor() {
-            super();
+            super({tagName: 'article', className: 'greeting'});
 
-            this.reflectTagName();
-            this.reflectAttribute();
             this.delegateEvents(this.events);
             this.render();
         }
@@ -133,7 +128,9 @@ module DEMO {
         }
 
         private renderTemplate(): string {
-            var template = new HACKLE.HBSTemplate('hbs/greeting.hbs');
+
+            var template = new HACKLE.HBSTemplate('src/hbs/greeting.hbs');
+
             return template.render({
                 greeting: 'Hello HACKLE.View',
                 animals: [

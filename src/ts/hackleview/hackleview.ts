@@ -28,6 +28,7 @@ module HACKLE {
             this.attributes = viewCreateOptions.attributes || {};
             this.$el = isJQuery(viewCreateOptions.$el) ? viewCreateOptions.$el : $('<' + this.tagName + '>');
 
+            this.reflectTagName();
             this.reflectAttribute();
         }
 

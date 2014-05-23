@@ -5,14 +5,9 @@ module DEMO {
 
     export class GreetingView extends HACKLE.View {
 
-        tagName: string = 'article';
-        className: string = 'greeting';
-
         constructor() {
-            super();
+            super({tagName: 'article', className: 'greeting'});
 
-            this.reflectTagName();
-            this.reflectAttribute();
             this.delegateEvents(this.events);
             this.render();
         }
