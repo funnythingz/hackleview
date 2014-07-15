@@ -6,6 +6,7 @@
         "license": "BSD",
         "devDependencies": {
             "grunt": "latest",
+            "load-grunt-tasks": "~0.1.0",
             "grunt-typescript": "latest",
             "grunt-contrib-uglify": "latest",
             "grunt-contrib-clean": "latest",
