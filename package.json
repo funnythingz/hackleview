@@ -1,21 +1,24 @@
 {
-  "name": "HACKLE.View",
-  "version": "0.6.0",
-  "description": "Simple View for TypeScript",
-  "author": "funnythingz",
-  "license": "BSD",
-  "devDependencies": {
-    "grunt": "latest",
-    "grunt-typescript": "latest",
-    "grunt-contrib-uglify": "latest",
-    "grunt-contrib-clean": "latest",
-    "grunt-contrib-watch": "latest",
-    "grunt-contrib-compass": "latest",
-    "grunt-contrib-concat": "latest",
-    "grunt-contrib-connect": "latest",
-    "grunt-contrib-copy": "latest",
-    "grunt-contrib-handlebars": "~0.8.0",
-    "testem": "~0.6.2",
-    "chai": "~1.9.0"
-  }
+    "name": "HACKLE.View",
+        "version": "0.6.0",
+        "description": "Simple View for TypeScript",
+        "author": "funnythingz",
+        "license": "BSD",
+        "devDependencies": {
+            "grunt": "latest",
+            "grunt-typescript": "latest",
+            "grunt-contrib-uglify": "latest",
+            "grunt-contrib-clean": "latest",
+            "grunt-contrib-watch": "latest",
+            "grunt-contrib-compass": "latest",
+            "grunt-contrib-concat": "latest",
+            "grunt-contrib-connect": "latest",
+            "grunt-contrib-copy": "latest",
+            "grunt-contrib-handlebars": "~0.8.0",
+            "testem": "~0.6.2",
+            "chai": "~1.9.0"
+        },
+        "scripts": {
+            "test": "grunt"
+        }
 }
