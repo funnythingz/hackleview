@@ -10,3 +10,5 @@ before_install:
     - npm install -g testem
     - npm install
     - bower install
+notifications:
+    email: false
