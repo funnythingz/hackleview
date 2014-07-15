@@ -1,6 +1,7 @@
 # HACKLE.View
 
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![Build Status](https://travis-ci.org/funnythingz/hackleview.svg?branch=master)](https://travis-ci.org/funnythingz/hackleview)
 
 Simple View for TypeScript.
 
