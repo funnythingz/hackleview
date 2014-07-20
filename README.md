@@ -1,5 +1,6 @@
 # HACKLE.View
 
+[![GitHub version](https://badge.fury.io/gh/funnythingz%2Fhackleview.svg)](http://badge.fury.io/gh/funnythingz%2Fhackleview)
 [![Build Status](https://travis-ci.org/funnythingz/hackleview.svg?branch=master)](https://travis-ci.org/funnythingz/hackleview)
 [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
